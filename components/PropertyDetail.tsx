@@ -62,9 +62,6 @@ export default function PropertyDetail({
               {categoryLabel(property.category)}
             </span>
             <span style={{ background: "oklch(0.95 0.005 250)", color: "oklch(0.45 0.01 250)", fontSize: 12, fontWeight: 600, padding: "5px 12px", borderRadius: 6 }}>
-              Mã tin: BDS-{property.id}
-            </span>
-            <span style={{ background: "oklch(0.95 0.005 250)", color: "oklch(0.45 0.01 250)", fontSize: 12, fontWeight: 600, padding: "5px 12px", borderRadius: 6 }}>
               {formatPostedLabel(property.createdAt)}
             </span>
           </div>
