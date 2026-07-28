@@ -114,20 +114,6 @@ export default function PropertyDetail({
                 title={`Bản đồ vị trí: ${property.address}`}
               />
             </div>
-            <a
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(property.address)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-block",
-                marginTop: 10,
-                fontSize: 13,
-                fontWeight: 700,
-                color: "var(--accent)",
-              }}
-            >
-              Mở trong Google Maps ›
-            </a>
           </div>
 
           {related.length > 0 && (
