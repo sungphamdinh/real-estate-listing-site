@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "staticfile.batdongsan.com.vn" },
-      { protocol: "http", hostname: "139.59.232.15" },
+      { protocol: "https", hostname: "139-59-232-15.sslip.io" },
     ],
   },
   turbopack: {

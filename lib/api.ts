@@ -1,7 +1,7 @@
 import { BaseResponse, PaginatedProperties, Property } from "./types";
 import { MOCK_PROPERTIES } from "./mock-properties";
 
-const API_URL = process.env.API_URL ?? "http://139.59.232.15";
+const API_URL = process.env.API_URL ?? "https://139-59-232-15.sslip.io";
 
 export async function fetchProperties(): Promise<Property[]> {
   try {
