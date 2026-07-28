@@ -15,6 +15,7 @@ import {
 import { useViewportWidth } from "@/lib/useViewportWidth";
 import PropertyGallery from "./PropertyGallery";
 import PropertyCard from "./PropertyCard";
+import LoanCalculator from "./LoanCalculator";
 
 export default function PropertyDetail({
   property,
@@ -201,6 +202,8 @@ export default function PropertyDetail({
                 <li>Luôn lập hợp đồng đặt cọc có công chứng.</li>
               </ul>
             </div>
+
+            <LoanCalculator propertyPrice={property.price} />
           </div>
         </div>
       </div>
