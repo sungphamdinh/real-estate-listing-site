@@ -103,7 +103,10 @@ export default function PropertyDetail({
 
           <div style={{ borderTop: "1px solid oklch(0.92 0.005 250)", marginTop: 22, paddingTop: 22 }}>
             <h3 style={{ fontSize: 17, fontWeight: 800, margin: "0 0 10px" }}>Vị trí</h3>
-            <div
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(property.address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 width: "100%",
                 height: 220,
@@ -111,17 +114,23 @@ export default function PropertyDetail({
                 background:
                   "repeating-linear-gradient(135deg, oklch(0.95 0.005 250) 0px, oklch(0.95 0.005 250) 12px, oklch(0.92 0.005 250) 12px, oklch(0.92 0.005 250) 24px)",
                 display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                fontFamily: "monospace",
+                gap: 8,
                 fontSize: 13,
                 color: "oklch(0.45 0.01 250)",
                 textAlign: "center",
                 padding: 16,
+                textDecoration: "none",
+                cursor: "pointer",
               }}
             >
-              Bản đồ khu vực — {property.address}
-            </div>
+              <span>{property.address}</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: "var(--accent)" }}>
+                Xem trên Google Maps ›
+              </span>
+            </a>
           </div>
 
           {related.length > 0 && (
