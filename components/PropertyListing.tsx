@@ -7,24 +7,34 @@ import { useViewportWidth } from "@/lib/useViewportWidth";
 import PropertyCard from "./PropertyCard";
 
 type AreaFilter = "all" | "lt50" | "50-80" | "80-120" | "120-200" | "gt200";
+type PriceFilter = "all" | "lt5" | "5-8" | "8-15" | "gt15";
 
 const CATEGORY_OPTIONS: PropertyCategory[] = ["NHA_PHO", "CAN_HO", "BIET_THU", "DAT_NEN"];
 
 interface Filters {
   category: "all" | PropertyCategory;
   addressSearch: string;
-  priceMin: string;
-  priceMax: string;
+  price: PriceFilter;
   area: AreaFilter;
 }
 
 const DEFAULT_FILTERS: Filters = {
   category: "all",
   addressSearch: "",
-  priceMin: "",
-  priceMax: "",
+  price: "all",
   area: "all",
 };
+
+const TY = 1_000_000_000;
+
+function matchesPrice(price: number, range: PriceFilter): boolean {
+  if (range === "all") return true;
+  if (range === "lt5") return price < 5 * TY;
+  if (range === "5-8") return price >= 5 * TY && price <= 8 * TY;
+  if (range === "8-15") return price > 8 * TY && price <= 15 * TY;
+  if (range === "gt15") return price > 15 * TY;
+  return true;
+}
 
 function matchesArea(area: number | null, range: AreaFilter): boolean {
   if (range === "all") return true;
@@ -55,10 +65,7 @@ export default function PropertyListing({ properties }: { properties: Property[]
         !p.address.toLowerCase().includes(filters.addressSearch.trim().toLowerCase())
       )
         return false;
-      const min = filters.priceMin ? Number(filters.priceMin) : null;
-      const max = filters.priceMax ? Number(filters.priceMax) : null;
-      if (min !== null && p.price < min) return false;
-      if (max !== null && p.price > max) return false;
+      if (!matchesPrice(p.price, filters.price)) return false;
       if (!matchesArea(computeArea(p), filters.area)) return false;
       return true;
     });
@@ -149,23 +156,18 @@ export default function PropertyListing({ properties }: { properties: Property[]
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <label style={labelStyle}>Khoảng giá (VNĐ)</label>
-                <div style={{ display: "flex", gap: 6 }}>
-                  <input
-                    type="number"
-                    placeholder="Từ"
-                    value={filters.priceMin}
-                    onChange={(e) => setFilters({ ...filters, priceMin: e.target.value })}
-                    style={selectStyle}
-                  />
-                  <input
-                    type="number"
-                    placeholder="Đến"
-                    value={filters.priceMax}
-                    onChange={(e) => setFilters({ ...filters, priceMax: e.target.value })}
-                    style={selectStyle}
-                  />
-                </div>
+                <label style={labelStyle}>Khoảng giá</label>
+                <select
+                  value={filters.price}
+                  onChange={(e) => setFilters({ ...filters, price: e.target.value as PriceFilter })}
+                  style={selectStyle}
+                >
+                  <option value="all">Tất cả mức giá</option>
+                  <option value="lt5">Dưới 5 tỷ</option>
+                  <option value="5-8">5 - 8 tỷ</option>
+                  <option value="8-15">8 - 15 tỷ</option>
+                  <option value="gt15">Trên 15 tỷ</option>
+                </select>
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
