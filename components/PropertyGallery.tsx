@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import PropertyImage from "./PropertyImage";
 
 const THUMB_WINDOW = 4;
@@ -16,7 +17,9 @@ export default function PropertyGallery({
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [thumbStart, setThumbStart] = useState(0);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
+  const hasImage = images.length > 0;
   const hasMultiple = images.length > 1;
   const hasMoreThanWindow = images.length > THUMB_WINDOW;
   const visibleThumbs = images.slice(thumbStart, thumbStart + THUMB_WINDOW);
@@ -27,6 +30,14 @@ export default function PropertyGallery({
     else if (i >= thumbStart + THUMB_WINDOW) setThumbStart(i - THUMB_WINDOW + 1);
   }
 
+  function prevImage() {
+    goTo((activeIndex - 1 + images.length) % images.length);
+  }
+
+  function nextImage() {
+    goTo((activeIndex + 1) % images.length);
+  }
+
   function prevThumbs() {
     setThumbStart((s) => Math.max(0, s - 1));
   }
@@ -35,9 +46,22 @@ export default function PropertyGallery({
     setThumbStart((s) => Math.min(images.length - THUMB_WINDOW, s + 1));
   }
 
+  useEffect(() => {
+    if (!previewOpen) return;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setPreviewOpen(false);
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "ArrowRight") nextImage();
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [previewOpen, activeIndex]);
+
   return (
     <div>
       <div
+        onClick={() => hasImage && setPreviewOpen(true)}
         style={{
           position: "relative",
           borderRadius: 14,
@@ -45,6 +69,7 @@ export default function PropertyGallery({
           width: "100%",
           aspectRatio: "16/10",
           maxHeight: 420,
+          cursor: hasImage ? "zoom-in" : "default",
         }}
       >
         <PropertyImage src={images[activeIndex]} alt={alt} placeholder="Ảnh chính căn nhà" />
@@ -122,6 +147,89 @@ export default function PropertyGallery({
           )}
         </div>
       )}
+
+      {previewOpen && hasImage && (
+        <div
+          onClick={() => setPreviewOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1000,
+            background: "oklch(0.1 0.01 250 / 0.92)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setPreviewOpen(false);
+            }}
+            style={{ ...previewButtonStyle, top: 20, right: 20 }}
+            aria-label="Đóng"
+          >
+            ✕
+          </button>
+
+          {hasMultiple && (
+            <>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevImage();
+                }}
+                style={{ ...previewButtonStyle, left: 20, top: "50%", transform: "translateY(-50%)" }}
+                aria-label="Ảnh trước"
+              >
+                ‹
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextImage();
+                }}
+                style={{ ...previewButtonStyle, right: 20, top: "50%", transform: "translateY(-50%)" }}
+                aria-label="Ảnh sau"
+              >
+                ›
+              </button>
+            </>
+          )}
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ position: "relative", width: "90vw", height: "85vh" }}
+          >
+            <Image
+              src={images[activeIndex]}
+              alt={alt}
+              fill
+              style={{ objectFit: "contain" }}
+              sizes="90vw"
+              priority
+            />
+          </div>
+
+          {hasMultiple && (
+            <div
+              style={{
+                position: "absolute",
+                bottom: 20,
+                left: "50%",
+                transform: "translateX(-50%)",
+                color: "#fff",
+                fontSize: 14,
+                fontWeight: 600,
+              }}
+            >
+              {activeIndex + 1}/{images.length}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -138,4 +246,20 @@ const thumbNavStyle: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+};
+
+const previewButtonStyle: React.CSSProperties = {
+  position: "absolute",
+  width: 44,
+  height: 44,
+  borderRadius: "50%",
+  border: "none",
+  background: "oklch(0.2 0.01 250 / 0.6)",
+  color: "#fff",
+  fontSize: 20,
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 1001,
 };
