@@ -17,7 +17,7 @@ export default async function PropertyPage({
   }
 
   const all = await fetchProperties();
-  const related = all.filter((p) => p.id !== property.id && p.type === property.type).slice(0, 3);
+  const related = all.filter((p) => p.id !== property.id && p.category === property.category).slice(0, 3);
 
   return <PropertyDetail property={property} related={related} />;
 }

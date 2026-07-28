@@ -26,17 +26,20 @@ export function zaloHref(phone: string): string {
   return "https://zalo.me/" + phone.replace(/\D/g, "");
 }
 
-export function formatPrice(property: Pick<Property, "type" | "price">): string {
-  if (property.type === "RENT") {
-    const trieu = property.price / 1_000_000;
-    return trieu.toLocaleString("vi-VN", { maximumFractionDigits: 1 }) + " triệu/tháng";
-  }
+export function formatPrice(property: Pick<Property, "price">): string {
   const ty = property.price / 1_000_000_000;
   return ty.toLocaleString("vi-VN", { maximumFractionDigits: 2 }) + " tỷ";
 }
 
-export function typeBadgeLabel(type: Property["type"]): string {
-  return type === "SALE" ? "Bán" : "Cho thuê";
+const CATEGORY_LABELS: Record<Property["category"], string> = {
+  NHA_PHO: "Nhà phố",
+  CAN_HO: "Căn hộ",
+  BIET_THU: "Biệt thự",
+  DAT_NEN: "Đất nền",
+};
+
+export function categoryLabel(category: Property["category"]): string {
+  return CATEGORY_LABELS[category];
 }
 
 export function computeArea(property: Pick<Property, "width" | "length">): number | null {
@@ -49,13 +52,9 @@ export function formatArea(property: Pick<Property, "width" | "length">): string
   return area ? area.toLocaleString("vi-VN", { maximumFractionDigits: 1 }) + " m²" : "—";
 }
 
-export function formatPricePerArea(property: Pick<Property, "type" | "price" | "width" | "length">): string {
+export function formatPricePerArea(property: Pick<Property, "price" | "width" | "length">): string {
   const area = computeArea(property);
   if (!area) return "—";
-  if (property.type === "RENT") {
-    const perM2 = Math.round(property.price / area);
-    return perM2.toLocaleString("vi-VN") + " đ/m²/tháng";
-  }
   const trieuPerM2 = Math.round(property.price / area / 1_000_000);
   return trieuPerM2.toLocaleString("vi-VN") + " triệu/m²";
 }

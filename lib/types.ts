@@ -1,10 +1,10 @@
-export type PropertyType = "SALE" | "RENT";
+export type PropertyCategory = "NHA_PHO" | "CAN_HO" | "BIET_THU" | "DAT_NEN";
 
 export interface Property {
   id: string;
   title: string;
   description: string | null;
-  type: PropertyType;
+  category: PropertyCategory;
   price: number;
   address: string;
   width: number | null;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Property } from "@/lib/types";
-import { formatPostedLabel, formatPrice, specsLabel, typeBadgeLabel } from "@/lib/format";
+import { categoryLabel, formatPostedLabel, formatPrice, specsLabel } from "@/lib/format";
 import PropertyImage from "./PropertyImage";
 
 export default function PropertyCard({ property }: { property: Property }) {
@@ -36,7 +36,7 @@ export default function PropertyCard({ property }: { property: Property }) {
             pointerEvents: "none",
           }}
         >
-          {typeBadgeLabel(property.type)}
+          {categoryLabel(property.category)}
         </div>
       </div>
       <div style={{ padding: 16, display: "flex", flexDirection: "column", gap: 8 }}>

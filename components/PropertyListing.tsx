@@ -1,15 +1,17 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Property, PropertyType } from "@/lib/types";
-import { computeArea } from "@/lib/format";
+import { Property, PropertyCategory } from "@/lib/types";
+import { categoryLabel, computeArea } from "@/lib/format";
 import { useViewportWidth } from "@/lib/useViewportWidth";
 import PropertyCard from "./PropertyCard";
 
 type AreaFilter = "all" | "lt50" | "50-80" | "80-120" | "120-200" | "gt200";
 
+const CATEGORY_OPTIONS: PropertyCategory[] = ["NHA_PHO", "CAN_HO", "BIET_THU", "DAT_NEN"];
+
 interface Filters {
-  type: "all" | PropertyType;
+  category: "all" | PropertyCategory;
   addressSearch: string;
   priceMin: string;
   priceMax: string;
@@ -17,7 +19,7 @@ interface Filters {
 }
 
 const DEFAULT_FILTERS: Filters = {
-  type: "all",
+  category: "all",
   addressSearch: "",
   priceMin: "",
   priceMax: "",
@@ -47,7 +49,7 @@ export default function PropertyListing({ properties }: { properties: Property[]
 
   const filtered = useMemo(() => {
     return properties.filter((p) => {
-      if (filters.type !== "all" && p.type !== filters.type) return false;
+      if (filters.category !== "all" && p.category !== filters.category) return false;
       if (
         filters.addressSearch.trim() &&
         !p.address.toLowerCase().includes(filters.addressSearch.trim().toLowerCase())
@@ -120,15 +122,18 @@ export default function PropertyListing({ properties }: { properties: Property[]
               }}
             >
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <label style={labelStyle}>Giao dịch</label>
+                <label style={labelStyle}>Loại hình</label>
                 <select
-                  value={filters.type}
-                  onChange={(e) => setFilters({ ...filters, type: e.target.value as Filters["type"] })}
+                  value={filters.category}
+                  onChange={(e) => setFilters({ ...filters, category: e.target.value as Filters["category"] })}
                   style={selectStyle}
                 >
-                  <option value="all">Tất cả</option>
-                  <option value="SALE">Bán</option>
-                  <option value="RENT">Cho thuê</option>
+                  <option value="all">Tất cả loại hình</option>
+                  {CATEGORY_OPTIONS.map((c) => (
+                    <option key={c} value={c}>
+                      {categoryLabel(c)}
+                    </option>
+                  ))}
                 </select>
               </div>
 

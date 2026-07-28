@@ -4,11 +4,11 @@ import Link from "next/link";
 import { Property } from "@/lib/types";
 import {
   BROKER,
+  categoryLabel,
   formatArea,
   formatPostedLabel,
   formatPrice,
   formatPricePerArea,
-  typeBadgeLabel,
   telHref,
   zaloHref,
 } from "@/lib/format";
@@ -70,7 +70,7 @@ export default function PropertyDetail({
 
           <div style={{ marginTop: 28, display: "flex", gap: 8, flexWrap: "wrap" }}>
             <span style={{ background: "oklch(0.95 0.03 258)", color: "var(--accent-dark)", fontSize: 12, fontWeight: 700, padding: "5px 12px", borderRadius: 6 }}>
-              {typeBadgeLabel(property.type)}
+              {categoryLabel(property.category)}
             </span>
             <span style={{ background: "oklch(0.95 0.005 250)", color: "oklch(0.45 0.01 250)", fontSize: 12, fontWeight: 600, padding: "5px 12px", borderRadius: 6 }}>
               Mã tin: BDS-{property.id}
