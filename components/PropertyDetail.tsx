@@ -33,7 +33,7 @@ export default function PropertyDetail({
   const specsCols = isMobile ? 2 : 3;
   const pagePadding = isMobile ? "16px" : "24px";
 
-  const galleryPlaceholders = ["Phòng khách", "Phòng ngủ", "Bếp", "Mặt tiền / khuôn viên"];
+  const galleryImages = property.images.slice(1);
 
   return (
     <div style={{ maxWidth: 1280, margin: "0 auto", padding: `20px ${pagePadding} 56px` }}>
@@ -60,13 +60,15 @@ export default function PropertyDetail({
           <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", width: "100%", aspectRatio: "16/10", maxHeight: 420 }}>
             <PropertyImage src={property.images[0]} alt={property.title} placeholder="Ảnh chính căn nhà" />
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: `repeat(${galleryCols}, minmax(0,1fr))`, gap: 10, marginTop: 10 }}>
-            {galleryPlaceholders.map((label, i) => (
-              <div key={i} style={{ position: "relative", borderRadius: 10, overflow: "hidden", aspectRatio: "1/1" }}>
-                <PropertyImage src={property.images[i + 1]} alt={label} placeholder={label} />
-              </div>
-            ))}
-          </div>
+          {galleryImages.length > 0 && (
+            <div style={{ display: "grid", gridTemplateColumns: `repeat(${galleryCols}, minmax(0,1fr))`, gap: 10, marginTop: 10 }}>
+              {galleryImages.map((src, i) => (
+                <div key={src} style={{ position: "relative", borderRadius: 10, overflow: "hidden", aspectRatio: "1/1" }}>
+                  <PropertyImage src={src} alt={`${property.title} - ảnh ${i + 2}`} placeholder="Ảnh" />
+                </div>
+              ))}
+            </div>
+          )}
 
           <div style={{ marginTop: 28, display: "flex", gap: 8, flexWrap: "wrap" }}>
             <span style={{ background: "oklch(0.95 0.03 258)", color: "var(--accent-dark)", fontSize: 12, fontWeight: 700, padding: "5px 12px", borderRadius: 6 }}>

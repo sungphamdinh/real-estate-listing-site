@@ -238,4 +238,22 @@ export const MOCK_PROPERTIES: Property[] = [
     createdAt: "2026-07-28T09:00:00.000Z",
     updatedAt: "2026-07-28T09:00:00.000Z",
   },
+  {
+    id: "mock-14",
+    title: "Bán nhà hẻm ba gác Xô Viết Nghệ Tĩnh, Bình Thạnh",
+    description:
+      "Nhà hẻm ba gác, giáp Quận 1. Trệt, 2 lầu, sân thượng. Công năng: 5 phòng ngủ, 4 WC, 1 phòng khách, 1 phòng thờ, 1 sân, 1 nhà để xe, 2 kho, 1 bếp, 1 ban công, 1 lô gia, 1 cầu thang phụ thoát hiểm. Hẻm nội bộ. Phù hợp làm văn phòng hoặc sửa công năng thành căn hộ dịch vụ (CHDV).",
+    category: "NHA_PHO",
+    price: 11000000000,
+    address: "Đường Xô Viết Nghệ Tĩnh, Bình Thạnh, TP.HCM",
+    width: 5,
+    length: 18,
+    floors: 3,
+    bedrooms: 5,
+    bathrooms: 4,
+    images: [],
+    contact: "0909 444 555",
+    createdAt: "2026-07-28T09:15:00.000Z",
+    updatedAt: "2026-07-28T09:15:00.000Z",
+  },
 ];
