@@ -18,6 +18,7 @@ export default function PropertyGallery({
   const [activeIndex, setActiveIndex] = useState(0);
   const [thumbStart, setThumbStart] = useState(0);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [rotation, setRotation] = useState(0);
 
   const hasImage = images.length > 0;
   const hasMultiple = images.length > 1;
@@ -57,6 +58,10 @@ export default function PropertyGallery({
     return () => window.removeEventListener("keydown", onKeyDown);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [previewOpen, activeIndex]);
+
+  useEffect(() => {
+    setRotation(0);
+  }, [activeIndex]);
 
   return (
     <div>
@@ -174,6 +179,17 @@ export default function PropertyGallery({
             ✕
           </button>
 
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setRotation((r) => (r + 90) % 360);
+            }}
+            style={{ ...previewButtonStyle, width: 56, height: 56, fontSize: 30, top: 20, right: 84 }}
+            aria-label="Xoay ảnh"
+          >
+            ⟳
+          </button>
+
           {hasMultiple && (
             <>
               <button
@@ -201,7 +217,13 @@ export default function PropertyGallery({
 
           <div
             onClick={(e) => e.stopPropagation()}
-            style={{ position: "relative", width: "90vw", height: "85vh" }}
+            style={{
+              position: "relative",
+              width: "90vw",
+              height: "85vh",
+              transform: `rotate(${rotation}deg)`,
+              transition: "transform 0.2s ease",
+            }}
           >
             <Image
               src={images[activeIndex]}
