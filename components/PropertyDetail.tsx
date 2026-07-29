@@ -90,14 +90,25 @@ export default function PropertyDetail({
 
           <div style={{ display: "grid", gridTemplateColumns: `repeat(${specsCols}, minmax(0,1fr))`, gap: 18, padding: "22px 0" }}>
             <Spec label="Diện tích" value={formatArea(property)} />
+            <Spec label="Diện tích sàn" value={property.floorArea ? `${property.floorArea} m²` : "—"} />
+            <Spec label="Giấy tờ pháp lý" value={legalDocumentLabel(property.legalDocument) ?? "—"} />
+            <Spec label="Số tầng" value={property.floors ? `${property.floors} tầng` : "—"} />
             <Spec label="Phòng ngủ" value={property.bedrooms ? `${property.bedrooms} phòng` : "—"} />
             <Spec label="Phòng tắm" value={property.bathrooms ? `${property.bathrooms} phòng` : "—"} />
-            <Spec label="Số tầng" value={property.floors ? `${property.floors} tầng` : "—"} />
             <Spec label="Hướng nhà" value={directionLabel(property.direction) ?? "—"} />
-            <Spec label="Giấy tờ pháp lý" value={legalDocumentLabel(property.legalDocument) ?? "—"} />
-            <Spec label="Diện tích công nhận" value={property.recognizedArea ? `${property.recognizedArea} m²` : "—"} />
-            <Spec label="Diện tích sàn" value={property.floorArea ? `${property.floorArea} m²` : "—"} />
           </div>
+
+          {(property.legalVerified || property.completionVerified || property.bankSupport) && (
+            <div style={{ borderTop: "1px solid oklch(0.92 0.005 250)", paddingTop: 22, paddingBottom: 22 }}>
+              <div style={{ maxWidth: 360, display: "flex", flexDirection: "column", gap: 10 }}>
+                {property.legalVerified && <VerifiedRow label="Pháp lý" />}
+                {property.completionVerified && <VerifiedRow label="Hoàn công" />}
+                {property.bankSupport && (
+                  <VerifiedRow label="Hỗ trợ Bank (thẩm định, định giá, vay vốn, v.v.)" />
+                )}
+              </div>
+            </div>
+          )}
 
           {property.description && (
             <div style={{ borderTop: "1px solid oklch(0.92 0.005 250)", paddingTop: 22 }}>
@@ -220,6 +231,31 @@ function Spec({ label, value }: { label: string; value: string }) {
     <div>
       <div style={{ fontSize: 12, color: "oklch(0.55 0.01 250)", fontWeight: 600, marginBottom: 4 }}>{label}</div>
       <div style={{ fontSize: 15, fontWeight: 700 }}>{value}</div>
+    </div>
+  );
+}
+
+function VerifiedRow({ label }: { label: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+      <span style={{ fontSize: 14, color: "oklch(0.32 0.01 250)" }}>{label}</span>
+      <span
+        style={{
+          width: 18,
+          height: 18,
+          borderRadius: "50%",
+          background: "#22c55e",
+          color: "#fff",
+          fontSize: 12,
+          fontWeight: 700,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+        }}
+      >
+        ✓
+      </span>
     </div>
   );
 }

@@ -29,6 +29,9 @@ export interface Property {
   direction: HouseDirection | null;
   recognizedArea: number | null;
   floorArea: number | null;
+  legalVerified: boolean;
+  completionVerified: boolean;
+  bankSupport: boolean;
   contact: string | null;
   createdAt: string;
   updatedAt: string;
