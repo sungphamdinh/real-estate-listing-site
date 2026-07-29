@@ -80,8 +80,17 @@ export default function Header() {
               {BROKER.name}
             </span>
             {!isCompact && (
-              <span style={{ fontSize: 12, color: "oklch(0.5 0.01 250)", whiteSpace: "nowrap" }}>
-                Chuyên viên Bất động sản · TP. Hồ Chí Minh
+              <span
+                style={{
+                  fontSize: 12,
+                  color: "oklch(0.5 0.01 250)",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+                title="Đầu tư BĐS khu vực TP.HCM, Đồng Nai, Lâm Đồng. Xử lí BĐS nợ bank, hỗ trợ vay bank"
+              >
+                Đầu tư BĐS khu vực TP.HCM, Đồng Nai, Lâm Đồng. Xử lí BĐS nợ bank, hỗ trợ vay bank
               </span>
             )}
           </div>
