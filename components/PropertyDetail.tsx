@@ -15,6 +15,7 @@ import {
 import { useViewportWidth } from "@/lib/useViewportWidth";
 import PropertyGallery from "./PropertyGallery";
 import PropertyCard from "./PropertyCard";
+import PropertyDescription from "./PropertyDescription";
 import LoanCalculator from "./LoanCalculator";
 
 export default function PropertyDetail({
@@ -96,9 +97,7 @@ export default function PropertyDetail({
           {property.description && (
             <div style={{ borderTop: "1px solid oklch(0.92 0.005 250)", paddingTop: 22 }}>
               <h3 style={{ fontSize: 17, fontWeight: 800, margin: "0 0 10px" }}>Mô tả chi tiết</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.7, color: "oklch(0.32 0.01 250)", whiteSpace: "pre-line", margin: 0 }}>
-                {property.description}
-              </p>
+              <PropertyDescription description={property.description} />
             </div>
           )}
 
