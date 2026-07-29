@@ -5,7 +5,7 @@ import { Property } from "./types";
 // broker identity, matching the source design's own defaults.
 export const BROKER = {
   name: "Đức Linh",
-  phone: "090 123 4567",
+  phone: "096 8798839",
   email: "lienhe@bds-hcm.vn",
 };
 

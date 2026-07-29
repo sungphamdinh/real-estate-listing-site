@@ -81,10 +81,10 @@ export default function Header() {
                 gap: 6,
                 padding: "9px 14px",
                 borderRadius: 8,
-                border: "1px solid oklch(0.85 0.01 250)",
+                background: "#0068FF",
                 fontSize: 13,
                 fontWeight: 700,
-                color: "oklch(0.3 0.01 250)",
+                color: "#fff",
               }}
             >
               Zalo
@@ -98,7 +98,7 @@ export default function Header() {
               gap: 6,
               padding: "9px 14px",
               borderRadius: 8,
-              background: "var(--accent)",
+              background: "rgb(0, 155, 161)",
               color: "#fff",
               fontSize: 13,
               fontWeight: 700,

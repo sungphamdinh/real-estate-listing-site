@@ -91,7 +91,6 @@ export default function PropertyDetail({
             <Spec label="Phòng ngủ" value={property.bedrooms ? `${property.bedrooms} phòng` : "—"} />
             <Spec label="Phòng tắm" value={property.bathrooms ? `${property.bathrooms} phòng` : "—"} />
             <Spec label="Số tầng" value={property.floors ? `${property.floors} tầng` : "—"} />
-            <Spec label="Ngày đăng" value={formatPostedLabel(property.createdAt)} />
           </div>
 
           {property.description && (
@@ -163,7 +162,7 @@ export default function PropertyDetail({
                     justifyContent: "center",
                     padding: 12,
                     borderRadius: 8,
-                    background: "var(--accent)",
+                    background: "rgb(0, 155, 161)",
                     color: "#fff",
                     fontWeight: 700,
                     fontSize: 14,
@@ -179,8 +178,8 @@ export default function PropertyDetail({
                     justifyContent: "center",
                     padding: 12,
                     borderRadius: 8,
-                    border: "1px solid oklch(0.85 0.01 250)",
-                    color: "oklch(0.3 0.01 250)",
+                    background: "#0068FF",
+                    color: "#fff",
                     fontWeight: 700,
                     fontSize: 14,
                   }}
