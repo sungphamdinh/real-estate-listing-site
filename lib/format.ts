@@ -59,8 +59,22 @@ export function formatPricePerArea(property: Pick<Property, "price" | "width" | 
   return trieuPerM2.toLocaleString("vi-VN") + " triệu/m²";
 }
 
+const VN_TIME_ZONE = "Asia/Ho_Chi_Minh";
+
+// Calendar-day diff in VN time, not a rolling 24h window, so a listing
+// posted late last night doesn't still read as "today" this morning.
+function vnCalendarDayStart(date: Date): number {
+  const [year, month, day] = date
+    .toLocaleDateString("en-CA", { timeZone: VN_TIME_ZONE })
+    .split("-")
+    .map(Number);
+  return Date.UTC(year, month - 1, day);
+}
+
 export function formatPostedLabel(createdAt: string): string {
-  const days = Math.floor((Date.now() - new Date(createdAt).getTime()) / (1000 * 60 * 60 * 24));
+  const days = Math.round(
+    (vnCalendarDayStart(new Date()) - vnCalendarDayStart(new Date(createdAt))) / (1000 * 60 * 60 * 24)
+  );
   if (days <= 0) return "Đăng hôm nay";
   return "Đăng " + days + " ngày trước";
 }
