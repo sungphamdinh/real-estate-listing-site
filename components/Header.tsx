@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-import { BROKER, brokerInitials, telHref, zaloHref } from "@/lib/format";
+import { BROKER, telHref, zaloHref } from "@/lib/format";
 import { useViewportWidth } from "@/lib/useViewportWidth";
 
 export default function Header() {
@@ -31,7 +32,7 @@ export default function Header() {
           maxWidth: 1280,
           margin: "0 auto",
           padding: isCompact ? "0 16px" : "0 24px",
-          height: 64,
+          height: 80,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -43,57 +44,20 @@ export default function Header() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 10,
             cursor: "pointer",
             minWidth: 0,
             color: "inherit",
+            flexShrink: 0,
           }}
         >
-          <div
-            style={{
-              width: 38,
-              height: 38,
-              borderRadius: 9,
-              background: "var(--accent)",
-              color: "#fff",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 800,
-              fontSize: 16,
-              flexShrink: 0,
-            }}
-          >
-            {brokerInitials(BROKER.name)}
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.25, minWidth: 0 }}>
-            <span
-              style={{
-                fontWeight: 800,
-                fontSize: 16,
-                letterSpacing: "-0.01em",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {BROKER.name}
-            </span>
-            {!isCompact && (
-              <span
-                style={{
-                  fontSize: 12,
-                  color: "oklch(0.5 0.01 250)",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-                title="Đầu tư BĐS khu vực TP.HCM, Đồng Nai, Lâm Đồng. Xử lí BĐS nợ bank, hỗ trợ vay bank"
-              >
-                Đầu tư BĐS khu vực TP.HCM, Đồng Nai, Lâm Đồng. Xử lí BĐS nợ bank, hỗ trợ vay bank
-              </span>
-            )}
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Aznest — From A to Z, Your perfect nest"
+            width={919}
+            height={415}
+            priority
+            style={{ height: 60, width: "auto" }}
+          />
         </Link>
 
         {!isCompact && (

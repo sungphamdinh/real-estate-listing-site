@@ -129,7 +129,7 @@ export default function PropertyDetail({
         </div>
 
         <div style={{ minWidth: 0 }}>
-          <div style={{ position: isCompact ? "static" : "sticky", top: 96, display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ position: isCompact ? "static" : "sticky", top: 112, display: "flex", flexDirection: "column", gap: 16 }}>
             <div style={{ background: "#fff", border: "1px solid oklch(0.9 0.005 250)", borderRadius: 14, padding: 20 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
                 <div
