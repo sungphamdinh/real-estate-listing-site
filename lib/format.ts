@@ -42,6 +42,31 @@ export function categoryLabel(category: Property["category"]): string {
   return CATEGORY_LABELS[category];
 }
 
+const LEGAL_DOCUMENT_LABELS: Record<NonNullable<Property["legalDocument"]>, string> = {
+  SO_DO_SO_HONG: "Sổ đỏ/ Sổ hồng",
+  HOP_DONG_MUA_BAN: "Hợp đồng mua bán",
+  DANG_CHO_SO: "Đang chờ sổ",
+};
+
+export function legalDocumentLabel(legalDocument: Property["legalDocument"]): string | null {
+  return legalDocument ? LEGAL_DOCUMENT_LABELS[legalDocument] : null;
+}
+
+const DIRECTION_LABELS: Record<NonNullable<Property["direction"]>, string> = {
+  DONG: "Đông",
+  TAY: "Tây",
+  NAM: "Nam",
+  BAC: "Bắc",
+  DONG_BAC: "Đông Bắc",
+  TAY_BAC: "Tây Bắc",
+  TAY_NAM: "Tây Nam",
+  DONG_NAM: "Đông Nam",
+};
+
+export function directionLabel(direction: Property["direction"]): string | null {
+  return direction ? DIRECTION_LABELS[direction] : null;
+}
+
 export function computeArea(property: Pick<Property, "width" | "length">): number | null {
   if (!property.width || !property.length) return null;
   return property.width * property.length;

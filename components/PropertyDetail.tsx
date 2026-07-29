@@ -5,10 +5,12 @@ import { Property } from "@/lib/types";
 import {
   BROKER,
   categoryLabel,
+  directionLabel,
   formatArea,
   formatPostedLabel,
   formatPrice,
   formatPricePerArea,
+  legalDocumentLabel,
   telHref,
   zaloHref,
 } from "@/lib/format";
@@ -91,6 +93,10 @@ export default function PropertyDetail({
             <Spec label="Phòng ngủ" value={property.bedrooms ? `${property.bedrooms} phòng` : "—"} />
             <Spec label="Phòng tắm" value={property.bathrooms ? `${property.bathrooms} phòng` : "—"} />
             <Spec label="Số tầng" value={property.floors ? `${property.floors} tầng` : "—"} />
+            <Spec label="Hướng nhà" value={directionLabel(property.direction) ?? "—"} />
+            <Spec label="Giấy tờ pháp lý" value={legalDocumentLabel(property.legalDocument) ?? "—"} />
+            <Spec label="Diện tích công nhận" value={property.recognizedArea ? `${property.recognizedArea} m²` : "—"} />
+            <Spec label="Diện tích sàn" value={property.floorArea ? `${property.floorArea} m²` : "—"} />
           </div>
 
           {property.description && (
