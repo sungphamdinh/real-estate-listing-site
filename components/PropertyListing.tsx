@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Fuse from "fuse.js";
 import { Property, PropertyCategory } from "@/lib/types";
 import { categoryLabel, computeArea, normalizeVietnamese } from "@/lib/format";
@@ -26,6 +26,8 @@ const DEFAULT_FILTERS: Filters = {
   area: "all",
 };
 
+const PAGE_SIZE = 24;
+
 const TY = 1_000_000_000;
 
 function matchesPrice(price: number, range: PriceFilter): boolean {
@@ -50,6 +52,8 @@ function matchesArea(area: number | null, range: AreaFilter): boolean {
 
 export default function PropertyListing({ properties }: { properties: Property[] }) {
   const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
+  const [page, setPage] = useState(1);
+  const resultsRef = useRef<HTMLElement>(null);
   const width = useViewportWidth();
   const isMobile = width < 640;
   const isTablet = width >= 640 && width < 1024;
@@ -82,6 +86,18 @@ export default function PropertyListing({ properties }: { properties: Property[]
       return true;
     });
   }, [properties, filters, fuse]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [filters]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  function goToPage(next: number) {
+    setPage(next);
+    resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   const selectStyle: React.CSSProperties = {
     height: 44,
@@ -218,7 +234,7 @@ export default function PropertyListing({ properties }: { properties: Property[]
         </div>
       </section>
 
-      <section style={{ maxWidth: 1280, margin: "0 auto", padding: `28px ${pagePadding} 56px` }}>
+      <section ref={resultsRef} style={{ maxWidth: 1280, margin: "0 auto", padding: `28px ${pagePadding} 56px`, scrollMarginTop: 24 }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 20 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, margin: 0 }}>
             {filtered.length} bất động sản phù hợp
@@ -226,9 +242,9 @@ export default function PropertyListing({ properties }: { properties: Property[]
           <span style={{ fontSize: 13, color: "oklch(0.5 0.01 250)" }}>Cập nhật hôm nay</span>
         </div>
 
-        {filtered.length > 0 ? (
+        {paginated.length > 0 ? (
           <div style={{ display: "grid", gridTemplateColumns: `repeat(${gridCols}, minmax(0,1fr))`, gap: 22 }}>
-            {filtered.map((property) => (
+            {paginated.map((property) => (
               <PropertyCard key={property.id} property={property} />
             ))}
           </div>
@@ -240,7 +256,45 @@ export default function PropertyListing({ properties }: { properties: Property[]
             <div style={{ fontSize: 14 }}>Hãy thử điều chỉnh bộ lọc giá, khu vực hoặc diện tích.</div>
           </div>
         )}
+
+        {totalPages > 1 && (
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginTop: 32 }}>
+            <button
+              onClick={() => goToPage(page - 1)}
+              disabled={page === 1}
+              style={{ ...pageNavStyle, opacity: page === 1 ? 0.3 : 1 }}
+              aria-label="Trang trước"
+            >
+              ‹
+            </button>
+            <span style={{ fontSize: 14, fontWeight: 700, color: "oklch(0.35 0.01 250)" }}>
+              Trang {page}/{totalPages}
+            </span>
+            <button
+              onClick={() => goToPage(page + 1)}
+              disabled={page === totalPages}
+              style={{ ...pageNavStyle, opacity: page === totalPages ? 0.3 : 1 }}
+              aria-label="Trang sau"
+            >
+              ›
+            </button>
+          </div>
+        )}
       </section>
     </div>
   );
 }
+
+const pageNavStyle: React.CSSProperties = {
+  width: 36,
+  height: 36,
+  borderRadius: "50%",
+  border: "1px solid oklch(0.85 0.01 250)",
+  background: "#fff",
+  fontSize: 20,
+  cursor: "pointer",
+  flexShrink: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
