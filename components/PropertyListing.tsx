@@ -235,11 +235,10 @@ export default function PropertyListing({ properties }: { properties: Property[]
       </section>
 
       <section ref={resultsRef} style={{ maxWidth: 1280, margin: "0 auto", padding: `28px ${pagePadding} 56px`, scrollMarginTop: 24 }}>
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 20 }}>
+        <div style={{ marginBottom: 20 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, margin: 0 }}>
             {filtered.length} bất động sản phù hợp
           </h2>
-          <span style={{ fontSize: 13, color: "oklch(0.5 0.01 250)" }}>Cập nhật hôm nay</span>
         </div>
 
         {paginated.length > 0 ? (
