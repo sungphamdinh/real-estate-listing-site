@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Fuse from "fuse.js";
 import { Property, PropertyCategory } from "@/lib/types";
-import { categoryLabel, computeArea } from "@/lib/format";
+import { categoryLabel, computeArea, normalizeVietnamese } from "@/lib/format";
 import { useViewportWidth } from "@/lib/useViewportWidth";
 import PropertyCard from "./PropertyCard";
 
@@ -57,19 +58,30 @@ export default function PropertyListing({ properties }: { properties: Property[]
   const searchCols = isMobile ? 1 : isTablet ? 2 : 4;
   const pagePadding = isMobile ? "16px" : "24px";
 
+  const fuse = useMemo(
+    () =>
+      new Fuse(properties, {
+        keys: [
+          { name: "title", weight: 2, getFn: (p) => normalizeVietnamese(p.title) },
+          { name: "address", weight: 1, getFn: (p) => normalizeVietnamese(p.address) },
+        ],
+        threshold: 0.15,
+        ignoreLocation: true,
+      }),
+    [properties]
+  );
+
   const filtered = useMemo(() => {
-    return properties.filter((p) => {
+    const query = filters.addressSearch.trim();
+    const base = query ? fuse.search(normalizeVietnamese(query)).map((r) => r.item) : properties;
+
+    return base.filter((p) => {
       if (filters.category !== "all" && p.category !== filters.category) return false;
-      if (
-        filters.addressSearch.trim() &&
-        !p.address.toLowerCase().includes(filters.addressSearch.trim().toLowerCase())
-      )
-        return false;
       if (!matchesPrice(p.price, filters.price)) return false;
       if (!matchesArea(computeArea(p), filters.area)) return false;
       return true;
     });
-  }, [properties, filters]);
+  }, [properties, filters, fuse]);
 
   const selectStyle: React.CSSProperties = {
     height: 44,
@@ -148,7 +160,7 @@ export default function PropertyListing({ properties }: { properties: Property[]
                 <label style={labelStyle}>Khu vực / Địa chỉ</label>
                 <input
                   type="text"
-                  placeholder="VD: Quận 1, Bình Thạnh..."
+                  placeholder="Quận 1, Bình Thạnh..."
                   value={filters.addressSearch}
                   onChange={(e) => setFilters({ ...filters, addressSearch: e.target.value })}
                   style={selectStyle}

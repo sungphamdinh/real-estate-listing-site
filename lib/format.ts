@@ -18,6 +18,19 @@ export function brokerInitials(name: string): string {
     .toUpperCase();
 }
 
+// Strips Vietnamese diacritics so search matches regardless of whether the
+// user typed accents (e.g. "Binh Thanh" should match "Bình Thạnh"). NFD
+// decomposition + stripping combining marks handles most letters, but "đ"
+// doesn't decompose that way and needs an explicit replace.
+export function normalizeVietnamese(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D")
+    .toLowerCase();
+}
+
 export function telHref(phone: string): string {
   return "tel:+84" + phone.replace(/\D/g, "").replace(/^0/, "");
 }
