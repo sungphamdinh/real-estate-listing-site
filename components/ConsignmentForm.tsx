@@ -117,8 +117,7 @@ export default function ConsignmentForm() {
     <section
       id="ky-gui"
       style={{
-        background: "linear-gradient(135deg, oklch(0.24 0.05 258) 0%, oklch(0.15 0.03 258) 100%)",
-        color: "#fff",
+        color: "oklch(0.2 0.01 250)",
         padding: "56px 24px",
         scrollMarginTop: 24,
       }}
@@ -141,7 +140,7 @@ export default function ConsignmentForm() {
         <h2 style={{ fontSize: "clamp(22px, 4vw, 30px)", fontWeight: 800, margin: "0 0 12px", letterSpacing: "-0.01em", maxWidth: 1280 }}>
           Bạn muốn bán nhà đất? Gửi thông tin cho {BROKER.name}
         </h2>
-        <p style={{ fontSize: 14, color: "oklch(0.75 0.01 250)", lineHeight: 1.6, margin: "0 0 28px", maxWidth: 1280 }}>
+        <p style={{ fontSize: 14, color: "oklch(0.45 0.01 250)", lineHeight: 1.6, margin: "0 0 28px", maxWidth: 1280 }}>
           Điền thông tin bất động sản và liên hệ của bạn, {BROKER.name} sẽ tư vấn định giá và phương án bán phù
           hợp trong vòng 24 giờ. Thông tin của bạn được bảo mật tuyệt đối.
         </p>
@@ -150,9 +149,10 @@ export default function ConsignmentForm() {
           onSubmit={handleSubmit}
           style={{
             background: "#fff",
+            border: "1px solid oklch(0.9 0.005 250)",
             borderRadius: 16,
             padding: 24,
-            boxShadow: "0 20px 50px oklch(0 0 0 / 0.35)",
+            boxShadow: "0 8px 24px oklch(0.2 0.02 258 / 0.06)",
           }}
         >
           <div style={{ display: "grid", gridTemplateColumns: gridCols, gap: 16, marginBottom: 16 }}>
