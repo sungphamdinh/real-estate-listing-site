@@ -10,7 +10,7 @@ import PropertyCard from "./PropertyCard";
 type AreaFilter = "all" | "lt50" | "50-80" | "80-120" | "120-200" | "gt200";
 type PriceFilter = "all" | "lt5" | "5-8" | "8-15" | "gt15";
 
-const CATEGORY_OPTIONS: PropertyCategory[] = ["NHA_PHO", "CAN_HO", "BIET_THU", "DAT_NEN"];
+const CATEGORY_OPTIONS: PropertyCategory[] = ["MAT_TIEN", "HEM", "DAT_NEN", "CAN_HO"];
 
 interface Filters {
   category: "all" | PropertyCategory;

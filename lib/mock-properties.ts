@@ -9,7 +9,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Bán nhà mặt tiền đường Nguyễn Trãi, Quận 1",
     description:
       "Nhà mặt tiền trung tâm, gần chợ Bến Thành, kinh doanh sầm uất, sổ hồng riêng.",
-    category: "NHA_PHO",
+    category: "MAT_TIEN",
     price: 15500000000,
     address: "Đường Nguyễn Trãi, Phường Bến Thành, Quận 1, TP.HCM",
     width: 4.5,
@@ -34,7 +34,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Biệt thự Q7 Riverside, Quận 7",
     description:
       "Biệt thự ven sông, thiết kế hiện đại, sân vườn rộng, an ninh 24/7.",
-    category: "BIET_THU",
+    category: "MAT_TIEN",
     price: 42000000000,
     address: "Khu đô thị Phú Mỹ Hưng, Quận 7, TP.HCM",
     width: 10,
@@ -59,7 +59,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Nhà phố mặt tiền đường Võ Văn Tần, Quận 3",
     description:
       "Nhà phố kinh doanh, mặt tiền rộng, gần công viên Tao Đàn.",
-    category: "NHA_PHO",
+    category: "MAT_TIEN",
     price: 19800000000,
     address: "Đường Võ Văn Tần, Phường 6, Quận 3, TP.HCM",
     width: 5,
@@ -84,7 +84,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Nhà hẻm xe hơi, Quận 8",
     description:
       "Nhà mới xây, hẻm xe hơi thông thoáng, gần cầu Chữ Y, thuận tiện di chuyển trung tâm.",
-    category: "NHA_PHO",
+    category: "HEM",
     price: 3650000000,
     address: "Đường Phạm Thế Hiển, Quận 8, TP.HCM",
     width: 4,
@@ -109,7 +109,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Nhà hẻm yên tĩnh, Bình Thạnh",
     description:
       "Hẻm 5m, khu dân cư an ninh, gần Landmark 81 và trường quốc tế.",
-    category: "NHA_PHO",
+    category: "HEM",
     price: 11800000000,
     address: "Đường Xô Viết Nghệ Tĩnh, Bình Thạnh, TP.HCM",
     width: 4.5,
@@ -134,7 +134,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Bán nhà nguyên căn 2 lầu gần Bến Thành, Quận 1",
     description:
       "Nhà nguyên căn 2 lầu, gần Bến Thành, phù hợp làm văn phòng hoặc ở gia đình.",
-    category: "NHA_PHO",
+    category: "MAT_TIEN",
     price: 14500000000,
     address: "Đường Cô Bắc, Phường Cầu Ông Lãnh, Quận 1, TP.HCM",
     width: 4,
@@ -159,7 +159,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Bán nhà phố ven sông Phú Mỹ Hưng, Quận 7",
     description:
       "Nhà nguyên căn khu Phú Mỹ Hưng, an ninh tốt, gần trường quốc tế và siêu thị.",
-    category: "NHA_PHO",
+    category: "MAT_TIEN",
     price: 16200000000,
     address: "Đường Nguyễn Đức Cảnh, Quận 7, TP.HCM",
     width: 5,
@@ -184,7 +184,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Bán nhà nguyên căn gần khu công nghệ cao, Thủ Đức",
     description:
       "Nhà nguyên căn giá rẻ, gần khu công nghệ cao, thích hợp cho gia đình trẻ.",
-    category: "NHA_PHO",
+    category: "MAT_TIEN",
     price: 4800000000,
     address: "Đường Võ Văn Ngân, TP. Thủ Đức, TP.HCM",
     width: 4,
@@ -209,7 +209,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Bán nhà gần sân bay, Tân Bình",
     description:
       "Nhà mới hoàn thiện, hẻm thông, gần sân bay Tân Sơn Nhất, tiện di chuyển.",
-    category: "NHA_PHO",
+    category: "MAT_TIEN",
     price: 8900000000,
     address: "Đường Cộng Hòa, Tân Bình, TP.HCM",
     width: 4.5,
@@ -234,7 +234,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Bán nhà hẻm yên tĩnh, Gò Vấp",
     description:
       "Nhà nguyên căn hẻm yên tĩnh, gần chợ và trường học, phù hợp gia đình nhỏ.",
-    category: "NHA_PHO",
+    category: "HEM",
     price: 3900000000,
     address: "Đường Quang Trung, Gò Vấp, TP.HCM",
     width: 4,
@@ -334,7 +334,7 @@ export const MOCK_PROPERTIES: Property[] = [
     title: "Bán nhà hẻm ba gác Xô Viết Nghệ Tĩnh, Bình Thạnh",
     description:
       "Nhà hẻm ba gác, giáp Quận 1. Trệt, 2 lầu, sân thượng. Công năng: 5 phòng ngủ, 4 WC, 1 phòng khách, 1 phòng thờ, 1 sân, 1 nhà để xe, 2 kho, 1 bếp, 1 ban công, 1 lô gia, 1 cầu thang phụ thoát hiểm. Hẻm nội bộ. Phù hợp làm văn phòng hoặc sửa công năng thành căn hộ dịch vụ (CHDV).",
-    category: "NHA_PHO",
+    category: "HEM",
     price: 11000000000,
     address: "Đường Xô Viết Nghệ Tĩnh, Bình Thạnh, TP.HCM",
     width: 5,
