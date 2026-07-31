@@ -231,9 +231,10 @@ export default function PropertyDetail({
             <div style={{ background: "oklch(0.97 0.005 250)", border: "1px solid oklch(0.9 0.005 250)", borderRadius: 14, padding: 18 }}>
               <div style={{ fontWeight: 800, fontSize: 13, marginBottom: 10 }}>Lưu ý an toàn giao dịch</div>
               <ul style={{ margin: 0, paddingLeft: 18, fontSize: 12.5, lineHeight: 1.8, color: "oklch(0.4 0.01 250)" }}>
-                <li>Kiểm tra sổ hồng và pháp lý trước khi đặt cọc.</li>
-                <li>Không chuyển tiền trước khi xem nhà thực tế.</li>
-                <li>Luôn lập hợp đồng đặt cọc có công chứng.</li>
+                <li>Liên hệ để được tư vấn quy trình làm việc chi tiết.</li>
+                <li>Kiểm tra kĩ pháp lý, quy hoạch, xây dựng.</li>
+                <li>Không chuyển tiền trước khi xem nhà.</li>
+                <li>Mọi thoả thuận đều nên lập thành văn bản.</li>
               </ul>
             </div>
 
