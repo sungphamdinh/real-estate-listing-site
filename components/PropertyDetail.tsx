@@ -67,6 +67,11 @@ export default function PropertyDetail({
             <span style={{ background: "oklch(0.95 0.03 258)", color: "var(--accent-dark)", fontSize: 12, fontWeight: 700, padding: "5px 12px", borderRadius: 6 }}>
               {categoryLabel(property.category)}
             </span>
+            {property.isFeatured && (
+              <span style={{ background: "#facc15", color: "#713f12", fontSize: 12, fontWeight: 700, padding: "5px 12px", borderRadius: 6 }}>
+                ⭐ Nổi bật
+              </span>
+            )}
             <span
               style={{
                 background: statusColor(property.status).bg,

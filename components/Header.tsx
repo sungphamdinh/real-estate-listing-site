@@ -64,7 +64,7 @@ export default function Header() {
           <nav style={{ display: "flex", gap: 28, alignItems: "center" }}>
             <Link href="/#top" style={navLinkStyle}>Trang chủ</Link>
             <Link href="/#search" style={navLinkStyle}>Nhà đất bán</Link>
-            <Link href="/#search" style={navLinkStyle}>Khu vực</Link>
+            <Link href="/?featured=true#search" style={navLinkStyle}>Tin nổi bật</Link>
             <Link href="/#contact" style={navLinkStyle}>Liên hệ</Link>
           </nav>
         )}
@@ -142,6 +142,7 @@ export default function Header() {
         >
           <Link href="/#top" onClick={() => setMobileNavOpen(false)} style={navLinkStyle}>Trang chủ</Link>
           <Link href="/#search" onClick={() => setMobileNavOpen(false)} style={navLinkStyle}>Nhà đất bán</Link>
+          <Link href="/?featured=true#search" onClick={() => setMobileNavOpen(false)} style={navLinkStyle}>Tin nổi bật</Link>
           <Link href="/#contact" onClick={() => setMobileNavOpen(false)} style={navLinkStyle}>Liên hệ</Link>
           <a href={zaloHref(BROKER.phone)} style={{ fontSize: 14, fontWeight: 700, color: "var(--accent)" }}>
             Chat Zalo: {BROKER.phone}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Fuse from "fuse.js";
 import { Property, PropertyCategory } from "@/lib/types";
 import { categoryLabel, computeArea, normalizeVietnamese } from "@/lib/format";
@@ -17,6 +18,7 @@ interface Filters {
   addressSearch: string;
   price: PriceFilter;
   area: AreaFilter;
+  featuredOnly: boolean;
 }
 
 const DEFAULT_FILTERS: Filters = {
@@ -24,6 +26,7 @@ const DEFAULT_FILTERS: Filters = {
   addressSearch: "",
   price: "all",
   area: "all",
+  featuredOnly: false,
 };
 
 const PAGE_SIZE = 24;
@@ -51,7 +54,11 @@ function matchesArea(area: number | null, range: AreaFilter): boolean {
 }
 
 export default function PropertyListing({ properties }: { properties: Property[] }) {
-  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
+  const searchParams = useSearchParams();
+  const [filters, setFilters] = useState<Filters>(() => ({
+    ...DEFAULT_FILTERS,
+    featuredOnly: searchParams.get("featured") === "true",
+  }));
   const [page, setPage] = useState(1);
   const resultsRef = useRef<HTMLElement>(null);
   const width = useViewportWidth();
@@ -83,6 +90,7 @@ export default function PropertyListing({ properties }: { properties: Property[]
       if (filters.category !== "all" && p.category !== filters.category) return false;
       if (!matchesPrice(p.price, filters.price)) return false;
       if (!matchesArea(computeArea(p), filters.area)) return false;
+      if (filters.featuredOnly && !p.isFeatured) return false;
       return true;
     });
   }, [properties, filters, fuse]);
@@ -235,10 +243,19 @@ export default function PropertyListing({ properties }: { properties: Property[]
       </section>
 
       <section ref={resultsRef} style={{ maxWidth: 1280, margin: "0 auto", padding: `28px ${pagePadding} 56px`, scrollMarginTop: 24 }}>
-        <div style={{ marginBottom: 20 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, flexWrap: "wrap", gap: 10 }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, margin: 0 }}>
             {filtered.length} bất động sản phù hợp
           </h2>
+          <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 700, color: "oklch(0.35 0.01 250)", cursor: "pointer" }}>
+            <input
+              type="checkbox"
+              checked={filters.featuredOnly}
+              onChange={(e) => setFilters({ ...filters, featuredOnly: e.target.checked })}
+              style={{ width: 20, height: 20, cursor: "pointer" }}
+            />
+            Tin nổi bật ⭐
+          </label>
         </div>
 
         {paginated.length > 0 ? (

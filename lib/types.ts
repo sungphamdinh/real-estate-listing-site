@@ -35,6 +35,7 @@ export interface Property {
   legalVerified: boolean;
   completionVerified: boolean;
   bankSupport: boolean;
+  isFeatured: boolean;
   contact: string | null;
   createdAt: string;
   updatedAt: string;

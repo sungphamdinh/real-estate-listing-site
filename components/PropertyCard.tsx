@@ -54,6 +54,24 @@ export default function PropertyCard({ property }: { property: Property }) {
         >
           {statusLabel(property.status)}
         </div>
+        {property.isFeatured && (
+          <div
+            style={{
+              position: "absolute",
+              bottom: 10,
+              left: 10,
+              background: "#facc15",
+              color: "#713f12",
+              fontSize: 11,
+              fontWeight: 700,
+              padding: "4px 10px",
+              borderRadius: 6,
+              pointerEvents: "none",
+            }}
+          >
+            ⭐ Nổi bật
+          </div>
+        )}
       </div>
       <div style={{ padding: 16, display: "flex", flexDirection: "column", gap: 8 }}>
         <div style={{ fontSize: 20, fontWeight: 800, color: "var(--accent)" }}>

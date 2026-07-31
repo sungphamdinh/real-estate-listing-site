@@ -1,7 +1,12 @@
+import { Suspense } from "react";
 import { fetchProperties } from "@/lib/api";
 import PropertyListing from "@/components/PropertyListing";
 
 export default async function Home() {
   const properties = await fetchProperties();
-  return <PropertyListing properties={properties} />;
+  return (
+    <Suspense fallback={null}>
+      <PropertyListing properties={properties} />
+    </Suspense>
+  );
 }
