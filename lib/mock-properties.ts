@@ -10,6 +10,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Nhà mặt tiền trung tâm, gần chợ Bến Thành, kinh doanh sầm uất, sổ hồng riêng.",
     category: "MAT_TIEN",
+    status: "DANG_BAN",
     price: 15500000000,
     address: "Đường Nguyễn Trãi, Phường Bến Thành, Quận 1, TP.HCM",
     width: 4.5,
@@ -35,6 +36,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Biệt thự ven sông, thiết kế hiện đại, sân vườn rộng, an ninh 24/7.",
     category: "MAT_TIEN",
+    status: "DANG_BAN",
     price: 42000000000,
     address: "Khu đô thị Phú Mỹ Hưng, Quận 7, TP.HCM",
     width: 10,
@@ -60,6 +62,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Nhà phố kinh doanh, mặt tiền rộng, gần công viên Tao Đàn.",
     category: "MAT_TIEN",
+    status: "DANG_BAN",
     price: 19800000000,
     address: "Đường Võ Văn Tần, Phường 6, Quận 3, TP.HCM",
     width: 5,
@@ -85,6 +88,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Nhà mới xây, hẻm xe hơi thông thoáng, gần cầu Chữ Y, thuận tiện di chuyển trung tâm.",
     category: "HEM",
+    status: "DANG_BAN",
     price: 3650000000,
     address: "Đường Phạm Thế Hiển, Quận 8, TP.HCM",
     width: 4,
@@ -110,6 +114,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Hẻm 5m, khu dân cư an ninh, gần Landmark 81 và trường quốc tế.",
     category: "HEM",
+    status: "DANG_BAN",
     price: 11800000000,
     address: "Đường Xô Viết Nghệ Tĩnh, Bình Thạnh, TP.HCM",
     width: 4.5,
@@ -135,6 +140,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Nhà nguyên căn 2 lầu, gần Bến Thành, phù hợp làm văn phòng hoặc ở gia đình.",
     category: "MAT_TIEN",
+    status: "DANG_BAN",
     price: 14500000000,
     address: "Đường Cô Bắc, Phường Cầu Ông Lãnh, Quận 1, TP.HCM",
     width: 4,
@@ -160,6 +166,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Nhà nguyên căn khu Phú Mỹ Hưng, an ninh tốt, gần trường quốc tế và siêu thị.",
     category: "MAT_TIEN",
+    status: "DANG_BAN",
     price: 16200000000,
     address: "Đường Nguyễn Đức Cảnh, Quận 7, TP.HCM",
     width: 5,
@@ -185,6 +192,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Nhà nguyên căn giá rẻ, gần khu công nghệ cao, thích hợp cho gia đình trẻ.",
     category: "MAT_TIEN",
+    status: "DANG_BAN",
     price: 4800000000,
     address: "Đường Võ Văn Ngân, TP. Thủ Đức, TP.HCM",
     width: 4,
@@ -210,6 +218,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Nhà mới hoàn thiện, hẻm thông, gần sân bay Tân Sơn Nhất, tiện di chuyển.",
     category: "MAT_TIEN",
+    status: "DANG_BAN",
     price: 8900000000,
     address: "Đường Cộng Hòa, Tân Bình, TP.HCM",
     width: 4.5,
@@ -235,6 +244,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Nhà nguyên căn hẻm yên tĩnh, gần chợ và trường học, phù hợp gia đình nhỏ.",
     category: "HEM",
+    status: "DANG_BAN",
     price: 3900000000,
     address: "Đường Quang Trung, Gò Vấp, TP.HCM",
     width: 4,
@@ -260,6 +270,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Căn hộ tầng cao view thoáng, nội thất cao cấp bàn giao đầy đủ, gần Phú Mỹ Hưng, tiện ích hồ bơi, gym.",
     category: "CAN_HO",
+    status: "DANG_BAN",
     price: 3200000000,
     address: "Đường Nguyễn Lương Bằng, Quận 7, TP.HCM",
     width: 8,
@@ -285,6 +296,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Căn hộ studio nhỏ gọn, gần cầu Chữ Y, tiện di chuyển vào trung tâm, phù hợp ở một mình hoặc đầu tư cho thuê lại.",
     category: "CAN_HO",
+    status: "DANG_BAN",
     price: 1650000000,
     address: "Đường Tạ Quang Bửu, Quận 8, TP.HCM",
     width: 5,
@@ -310,6 +322,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Căn hộ cao cấp 3 phòng ngủ, view sông trọn vẹn, ban công rộng, gần cầu Sài Gòn và Landmark 81.",
     category: "CAN_HO",
+    status: "DANG_BAN",
     price: 6800000000,
     address: "Đường Điện Biên Phủ, Bình Thạnh, TP.HCM",
     width: 9.5,
@@ -335,6 +348,7 @@ export const MOCK_PROPERTIES: Property[] = [
     description:
       "Nhà hẻm ba gác, giáp Quận 1. Trệt, 2 lầu, sân thượng. Công năng: 5 phòng ngủ, 4 WC, 1 phòng khách, 1 phòng thờ, 1 sân, 1 nhà để xe, 2 kho, 1 bếp, 1 ban công, 1 lô gia, 1 cầu thang phụ thoát hiểm. Hẻm nội bộ. Phù hợp làm văn phòng hoặc sửa công năng thành căn hộ dịch vụ (CHDV).",
     category: "HEM",
+    status: "DANG_BAN",
     price: 11000000000,
     address: "Đường Xô Viết Nghệ Tĩnh, Bình Thạnh, TP.HCM",
     width: 5,

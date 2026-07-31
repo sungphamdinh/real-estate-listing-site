@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Property } from "@/lib/types";
-import { categoryLabel, formatPostedLabel, formatPrice, specsLabel } from "@/lib/format";
+import { categoryLabel, formatPostedLabel, formatPrice, specsLabel, statusColor, statusLabel } from "@/lib/format";
 import PropertyImage from "./PropertyImage";
 
 export default function PropertyCard({ property }: { property: Property }) {
@@ -37,6 +37,22 @@ export default function PropertyCard({ property }: { property: Property }) {
           }}
         >
           {categoryLabel(property.category)}
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            background: statusColor(property.status).bg,
+            color: statusColor(property.status).fg,
+            fontSize: 11,
+            fontWeight: 700,
+            padding: "4px 10px",
+            borderRadius: 6,
+            pointerEvents: "none",
+          }}
+        >
+          {statusLabel(property.status)}
         </div>
       </div>
       <div style={{ padding: 16, display: "flex", flexDirection: "column", gap: 8 }}>

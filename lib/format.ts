@@ -55,6 +55,28 @@ export function categoryLabel(category: Property["category"]): string {
   return CATEGORY_LABELS[category];
 }
 
+const STATUS_LABELS: Record<Property["status"], string> = {
+  DANG_BAN: "Đang bán",
+  DANG_GIAO_DICH: "Đang giao dịch",
+  DA_COC: "Đã cọc",
+  DA_BAN: "Đã bán",
+};
+
+export function statusLabel(status: Property["status"]): string {
+  return STATUS_LABELS[status];
+}
+
+const STATUS_COLORS: Record<Property["status"], { bg: string; fg: string }> = {
+  DANG_BAN: { bg: "#dcfce7", fg: "#16a34a" },
+  DANG_GIAO_DICH: { bg: "#fef3c7", fg: "#d97706" },
+  DA_COC: { bg: "#ffedd5", fg: "#ea580c" },
+  DA_BAN: { bg: "#e5e7eb", fg: "#4b5563" },
+};
+
+export function statusColor(status: Property["status"]): { bg: string; fg: string } {
+  return STATUS_COLORS[status];
+}
+
 const LEGAL_DOCUMENT_LABELS: Record<NonNullable<Property["legalDocument"]>, string> = {
   SO_DO_SO_HONG: "Sổ đỏ/ Sổ hồng",
   HOP_DONG_MUA_BAN: "Hợp đồng mua bán",
