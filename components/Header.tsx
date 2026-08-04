@@ -32,7 +32,7 @@ export default function Header() {
           maxWidth: 1280,
           margin: "0 auto",
           padding: isCompact ? "0 16px" : "0 24px",
-          height: 80,
+          height: 96,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -52,11 +52,11 @@ export default function Header() {
         >
           <Image
             src="/logo.png"
-            alt="Aznest — From A to Z, Your perfect nest"
-            width={919}
-            height={415}
+            alt="Linhdzi — Pháp lí chuẩn, Giá trị thật"
+            width={825}
+            height={735}
             priority
-            style={{ height: 60, width: "auto" }}
+            style={{ height: 80, width: "auto" }}
           />
         </Link>
 
