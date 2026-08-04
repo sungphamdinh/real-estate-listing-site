@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     description,
     url: "/",
     siteName: "Đức Linh — Bất động sản TP.HCM",
-    images: ["/logo.png"],
     locale: "vi_VN",
     type: "website",
   },
@@ -43,7 +42,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/logo.png"],
   },
   robots: {
     index: true,
